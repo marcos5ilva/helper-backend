@@ -1,7 +1,8 @@
 // Update with your config settings.
+require('dotenv').config();
 
 module.exports = {
-  development: {
+  developmentbkp: {
     client: 'sqlite3',
     connection: {
       filename: './src/database/db.sqlite',
@@ -12,11 +13,31 @@ module.exports = {
     useNullAsDefault: true,
   },
 
-  test: {
+  testsql: {
     client: 'sqlite3',
     connection: {
       filename: './src/database/test.sqlite',
     },
+    migrations: {
+      directory: './src/database/migrations',
+    },
+    useNullAsDefault: true,
+  },
+
+  test: {
+    client: 'pg',
+    connection: process.env.PG_CONNECTION_STRING,
+
+    migrations: {
+      directory: './src/database/migrations',
+    },
+    useNullAsDefault: true,
+  },
+
+  development: {
+    client: 'pg',
+    connection: process.env.PG_CONNECTION_STRING,
+
     migrations: {
       directory: './src/database/migrations',
     },
@@ -39,10 +60,10 @@ module.exports = {
     },
   },
 
-  production: {
+  productionorigin: {
     client: 'postgresql',
     connection: {
-      database: 'my_db',
+      database: 'helprdb',
       user: 'username',
       password: 'password',
     },
